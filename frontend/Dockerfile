@@ -1,5 +1,8 @@
-FROM public.ecr.aws/v0a2l7y2/wilco/anythink-frontend-react:latest
+FROM node:18
 
-RUN chown node:node /wait-for-it.sh
-RUN chown node:node /usr/src/frontend/node_modules
-USER node
+RUN curl https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh --output /wait-for-it.sh
+
+RUN chmod +x /wait-for-it.sh
+
+WORKDIR /usr/src/frontend
+RUN yarn install
